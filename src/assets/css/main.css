@@ -1,0 +1,9 @@
+.empty-field {
+    border: 1px solid red;
+}
+nav .router-link-exact-active {
+    background-color: rgb(55 65 81);
+}
+.user-nav-area .router-link-exact-active {
+    background-color: rgb(243 244 246);
+}
