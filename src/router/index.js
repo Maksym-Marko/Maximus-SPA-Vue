@@ -39,7 +39,7 @@ const routes = [
   // Email verification
   {
     path: '/verify-email',
-    component: () => import('@/components/DefaultLayout.vue'),    
+    component: () => import( '@/components/DefaultLayout.vue' ),    
     children: [
       {
         path: '/verify-email',
@@ -47,12 +47,12 @@ const routes = [
         meta: {
           requiresAuth: true,
         },
-        component: () => import('@/views/VerifyEmail.vue'),
+        component: () => import( '@/views/VerifyEmail.vue' ),
       },
       {
         path: '/verify-email-check',
         name: 'VerifyEmailCheck',
-        component: () => import('@/views/VerifyEmailCheck.vue'),
+        component: () => import( '@/views/VerifyEmailCheck.vue' ),
       }
     ]
   },
@@ -78,7 +78,7 @@ const routes = [
   {
     path: '/logout',
     name: 'Logout',
-    beforeEnter: (to, from) => {
+    beforeEnter: ( to, from ) => {
       Auth.logout()
       return false
     },
@@ -115,7 +115,7 @@ const router = createRouter( {
   routes
 } )
 
-router.beforeEach( (to, from, next) => {
+router.beforeEach( ( to, from, next ) => {
 
   const token = store.getters['user/getToken']
   const user = store.getters['user/getUser']
@@ -125,7 +125,7 @@ router.beforeEach( (to, from, next) => {
 
   let _next = null
 
-  if (reqAuth && ! token) {
+  if ( reqAuth && ! token ) {
 
     _next = { name: 'Login' }
 

@@ -76,55 +76,55 @@
 </template>
 
 <script setup>
-    import { onMounted, ref, computed } from 'vue'
-    import store from '@/store'
-    import { useRoute, useRouter } from 'vue-router'
-    import Auth from '@/services/Auth'
-    import { LockClosedIcon } from '@heroicons/vue/20/solid'
+  import { onMounted, ref, computed } from 'vue'
+  import store from '@/store'
+  import { useRoute, useRouter } from 'vue-router'
+  import Auth from '@/services/Auth'
+  import { LockClosedIcon } from '@heroicons/vue/20/solid'
 
-    const attempt = computed( () => store.getters['system/getAttempt'] )
+  const attempt = computed( () => store.getters['system/getAttempt'] )
 
-    const router = useRouter()
-    const route = useRoute()
+  const router = useRouter()
+  const route = useRoute()
 
-    const formData = ref( {
-        email: null,
-        password: null,
-        password_confirmation: null
+  const formData = ref( {
+      email: null,
+      password: null,
+      password_confirmation: null
+  } )
+
+  const errors = ref( [] )
+
+  const resetPassword = () => {
+
+    if( ! formData.value.email ) errors.value.push( 'Fill in email' )
+    if( ! formData.value.password ) errors.value.push( 'Fill in password' )
+    if( ! formData.value.password_confirmation ) errors.value.push( 'Confirm your password' )
+
+    if( ! formData.value.email || ! formData.value.password || ! formData.value.password_confirmation ) return
+
+    store.commit( {
+      type: 'system/SET_ATTEMPT',
+      attempt: true
+    } )
+    
+    Auth.forgotPasswordCheck( {
+      email: formData.value.email,
+      password: formData.value.password,
+      password_confirmation: formData.value.password_confirmation,
+      token: route.query.token,
     } )
 
-    const errors = ref( [] )
+  }
 
-    const resetPassword = () => {
+  onMounted( () => {
 
-        if( ! formData.value.email ) errors.value.push( 'Fill in email' )
-        if( ! formData.value.password ) errors.value.push( 'Fill in password' )
-        if( ! formData.value.password_confirmation ) errors.value.push( 'Confirm your password' )
+    if( typeof route.query.token === 'undefined' ) {
 
-        if( ! formData.value.email || ! formData.value.password || ! formData.value.password_confirmation ) return
-
-        store.commit( {
-          type: 'system/SET_ATTEMPT',
-          attempt: true
-        } )
-        
-        Auth.forgotPasswordCheck( {
-            email: formData.value.email,
-            password: formData.value.password,
-            password_confirmation: formData.value.password_confirmation,
-            token: route.query.token,
-        } )
+        router.push( { name: 'notFound' } )
 
     }
 
-    onMounted( () => {
-
-        if( typeof route.query.token === 'undefined' ) {
-
-            router.push( { name: 'notFound' } )
-
-        }
-
-    } )
+  } )
 
 </script>

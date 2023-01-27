@@ -15,6 +15,6 @@
 </template>
 
 <script setup>
-    import Navigation from '@/components/Navigation.vue'
-    import FlashMessage from '@/components/FlashMessage.vue'
+  import Navigation from '@/components/Navigation.vue'
+  import FlashMessage from '@/components/FlashMessage.vue'
 </script>

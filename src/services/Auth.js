@@ -16,7 +16,7 @@ const Auth = {
         } )
             .then( res => {
 
-                if(res?.data === 'success') {
+                if( res?.data === 'success' ) {
 
                     store.commit( {
                         type: 'notify/SET_MESSAGES',
@@ -40,7 +40,7 @@ const Auth = {
         } )
             .then( res => {
 
-                if(res?.data === 'success') {
+                if( res?.data === 'success' ) {
 
                     store.commit( {
                         type: 'notify/SET_MESSAGES',
@@ -62,7 +62,7 @@ const Auth = {
         } )
             .then( res => {
 
-                if(res?.data?.message === 'success') {
+                if( res?.data?.message === 'success' ) {
 
                     store.commit( {
                         type: 'notify/SET_MESSAGES',
@@ -99,7 +99,7 @@ const Auth = {
         } )
             .then( res => {
 
-                if(res?.data === 'success') {
+                if( res?.data === 'success' ) {
 
                     store.commit( {
                         type: 'notify/SET_MESSAGES',
@@ -113,7 +113,7 @@ const Auth = {
 
                 }
 
-                if(res?.data === 'verified') {
+                if( res?.data === 'verified' ) {
                     router.go()
                 }
 
@@ -235,7 +235,7 @@ const Auth = {
             API.get( '/user' )
                 .then( res => {
 
-                    if(res?.status === 200 ) {
+                    if( res?.status === 200 ) {
 
                         store.commit( {
                             type: 'user/SET_USER_IF_AUTH',

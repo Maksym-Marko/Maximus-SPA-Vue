@@ -1,7 +1,7 @@
 <template>
   
   <div
-    v-if="messages.length>0 || (errors && Object.keys( errors ).length>0)"
+    v-if="messages.length>0 || ( errors && Object.keys( errors ).length>0 )"
     :style="{
       position: 'fixed',
       right: '20px',
@@ -28,7 +28,7 @@
 </template>
 
 <script setup>
-import {computed} from 'vue'
+import { computed } from 'vue'
 import store from '@/store'
 
 const messages = computed( () => store.getters['notify/getMessages'] )

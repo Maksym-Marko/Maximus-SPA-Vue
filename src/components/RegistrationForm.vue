@@ -96,46 +96,46 @@
 </template>
 
 <script setup>
-    import { ref, computed } from 'vue'
-    import store from '@/store'
-    import Auth from '@/services/Auth'
-    import { LockClosedIcon } from '@heroicons/vue/20/solid'
+  import { ref, computed } from 'vue'
+  import store from '@/store'
+  import Auth from '@/services/Auth'
+  import { LockClosedIcon } from '@heroicons/vue/20/solid'
 
-    const attempt = computed( () => store.getters['system/getAttempt'] )
+  const attempt = computed( () => store.getters['system/getAttempt'] )
 
-    const formData = ref( {
-        name: null,
-        email: null,
-        password: null,
-        password_confirmation: null
-    } )
+  const formData = ref( {
+    name: null,
+    email: null,
+    password: null,
+    password_confirmation: null
+  } )
 
-    const errors = ref( [] )
+  const errors = ref( [] )
 
-    const register = () => {
+  const register = () => {
 
-        errors.value = []
+      errors.value = []
 
-        // validation
-        if( ! formData.value.name ) errors.value.push( 'Fill in name' )
-        if( ! formData.value.email ) errors.value.push( 'Fill in email' )
-        if( ! formData.value.password ) errors.value.push( 'Fill in password' )
-        if( ! formData.value.password_confirmation ) errors.value.push( 'Confirm your password' )
-        if( 
-            formData.value.password && 
-            formData.value.password_confirmation &&
-            formData.value.password !== formData.value.password_confirmation
-        ) {
-            errors.value.push( 'Password and Password confirmation do NOT match' )
-        }
+      // validation
+      if( ! formData.value.name ) errors.value.push( 'Fill in name' )
+      if( ! formData.value.email ) errors.value.push( 'Fill in email' )
+      if( ! formData.value.password ) errors.value.push( 'Fill in password' )
+      if( ! formData.value.password_confirmation ) errors.value.push( 'Confirm your password' )
+      if( 
+          formData.value.password && 
+          formData.value.password_confirmation &&
+          formData.value.password !== formData.value.password_confirmation
+      ) {
+          errors.value.push( 'Password and Password confirmation do NOT match' )
+      }
 
-        Auth.register( formData.value )
+      Auth.register( formData.value )
 
-        store.commit( {
-          type: 'system/SET_ATTEMPT',
-          attempt: true
-        } )
+      store.commit( {
+        type: 'system/SET_ATTEMPT',
+        attempt: true
+      } )
 
-    }
+  }
 
 </script>

@@ -16,10 +16,10 @@ API.interceptors.request.use( config => {
 
 API.interceptors.response.use(
   
-  (response) => {
+  ( response ) => {
     return response
   },
-  function (error) {
+  function( error ) {
     
     store.commit( {
       type: 'system/SET_ATTEMPT',
@@ -60,7 +60,7 @@ API.interceptors.response.use(
     } else {
 
       alert( error.message + '. Please check your API connection.' )
-      console.error(error.message)
+      console.error( error.message )
 
     }
     // return Promise.reject(error);

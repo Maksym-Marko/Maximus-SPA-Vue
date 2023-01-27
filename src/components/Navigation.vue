@@ -114,66 +114,66 @@
 </template>
 
 <script setup>
-    import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/vue'
-    import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/vue/24/outline'
-    import { computed, ref, onMounted, watch } from 'vue'
-    import store from '@/store'
+  import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/vue'
+  import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/vue/24/outline'
+  import { computed, ref, onMounted, watch } from 'vue'
+  import store from '@/store'
 
-    const auth = computed( () => store.getters['user/getUser'] )
+  const auth = computed( () => store.getters['user/getUser'] )
 
-    const user = {
-      imageUrl:
-        '/user.png',
-    }
-   
-    const navigation = [
-      { name: 'Home', label: 'Home' },
-      { name: 'About', label: 'About' },
-    ]
+  const user = {
+    imageUrl:
+      '/user.png',
+  }
+  
+  const navigation = [
+    { name: 'Home', label: 'Home' },
+    { name: 'About', label: 'About' },
+  ]
 
-    const userNavigation = [
-      { name: 'Dashboard', label: 'Dashboard', reqAuth: true },
-      { name: 'Logout', label: 'Logout', reqAuth: true },
-      { name: 'Register', label: 'Register', reqGuest: true },
-      { name: 'Login', label: 'Login', reqGuest: true },
-    ]
+  const userNavigation = [
+    { name: 'Dashboard', label: 'Dashboard', reqAuth: true },
+    { name: 'Logout', label: 'Logout', reqAuth: true },
+    { name: 'Register', label: 'Register', reqGuest: true },
+    { name: 'Login', label: 'Login', reqGuest: true },
+  ]
 
-    const uN = ref( [] )
+  const uN = ref( [] )
 
-    const navPreparation = ( origin, output ) => {
+  const navPreparation = ( origin, output ) => {
 
-      output.value = []
+    output.value = []
 
-      origin.map( ( item, index ) => {
+    origin.map( ( item, index ) => {
 
-        if( auth.value ) {
+      if( auth.value ) {
 
-          if( item.reqAuth || ( ! item.reqAuth && ! item.reqGuest ) ) {
-            output.value.push( origin[index] )
-          }
+        if( item.reqAuth || ( ! item.reqAuth && ! item.reqGuest ) ) {
+          output.value.push( origin[index] )
+        }
 
-        } else {
+      } else {
 
-          if( ! item.reqAuth || item.reqGuest ) {
-            output.value.push( origin[index] )
-          }
+        if( ! item.reqAuth || item.reqGuest ) {
+          output.value.push( origin[index] )
+        }
 
-        }        
-
-      } )
-
-    }
-
-    onMounted( () => {
-
-      navPreparation( userNavigation, uN )
+      }        
 
     } )
 
-    watch( auth, () => {
+  }
 
-      navPreparation( userNavigation, uN )
+  onMounted( () => {
 
-    } )
-    
+    navPreparation( userNavigation, uN )
+
+  } )
+
+  watch( auth, () => {
+
+    navPreparation( userNavigation, uN )
+
+  } )
+  
 </script>
