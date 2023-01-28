@@ -152,10 +152,6 @@ router.beforeEach( ( to, from, next ) => {
 
             _next = { name: 'VerifyEmail' }
 
-          } else {
-
-            _next = null
-
           }
 
           next( _next )
