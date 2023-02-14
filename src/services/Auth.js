@@ -16,7 +16,7 @@ const Auth = {
         } )
             .then( res => {
 
-                if( res?.data === 'success' ) {
+                if( res?.data?.message === 'success' ) {
 
                     store.commit( {
                         type: 'notify/SET_MESSAGES',
@@ -40,7 +40,7 @@ const Auth = {
         } )
             .then( res => {
 
-                if( res?.data === 'success' ) {
+                if( res?.data?.message === 'success' ) {
 
                     store.commit( {
                         type: 'notify/SET_MESSAGES',
@@ -99,7 +99,7 @@ const Auth = {
         } )
             .then( res => {
 
-                if( res?.data === 'success' ) {
+                if( res?.data?.message === 'success' ) {
 
                     store.commit( {
                         type: 'notify/SET_MESSAGES',
