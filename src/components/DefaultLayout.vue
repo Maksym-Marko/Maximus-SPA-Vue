@@ -8,7 +8,7 @@
         <router-view />
 
       </div>
-    </main>    
+    </main>
 
     <FlashMessage />
     
